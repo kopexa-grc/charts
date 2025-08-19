@@ -81,6 +81,13 @@ jobs:
           ref: gh-pages
           path: gh-pages
           fetch-depth: 1
+          persist-credentials: true
+
+      - name: Configure Git in gh-pages
+        working-directory: gh-pages
+        run: |
+          git config user.name  "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
       - name: Ensure index.yaml exists (first publish guard)
         working-directory: gh-pages
@@ -93,11 +100,6 @@ jobs:
       - name: Install helm-repo-html plugin
         run: |
           helm plugin install https://github.com/halkeye/helm-repo-html
-
-      - name: Configure Git
-        run: | # $GITHUB_ACTOR: last user who trigger the action
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Generate index.html from index.yaml
         working-directory: gh-pages
