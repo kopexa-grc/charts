@@ -19,4 +19,28 @@ entries:
     urls:
     - kopexa-0.1.1.tgz
     version: 0.1.1
-generated: "2025-08-19T10:44:08.726513448Z"
+  openfga:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-08-19T10:57:54.923118331Z"
+    dependencies:
+    - alias: openfga
+      name: openfga
+      repository: https://openfga.github.io/helm-charts
+      version: 0.2.42
+    description: A Helm chart to deploy OpenFGA Server within Kopexa Infrastructure
+    digest: 2a8cf47ab42f65204486257a49d395481f040f50893886aa190ffff2c0508042
+    home: https://kopexa.com
+    icon: https://kopexa.com/favicon.ico
+    maintainers:
+    - email: hello@kopexa.com
+      name: Kopexa Team
+      url: https://kopexa.com
+    name: openfga
+    sources:
+    - https://github.com/kopexa-grc/charts
+    type: application
+    urls:
+    - openfga-0.1.1.tgz
+    version: 0.1.1
+generated: "2025-08-19T10:57:54.923127749Z"
