@@ -1,0 +1,67 @@
+
+version: '3'
+
+vars:
+  CHARTS:
+    sh: ls -d charts/*
+
+tasks:
+  default:
+    cmds:
+      - echo Welcome to Kopexa Helm Charts
+      - task --list
+    silent: true
+
+  prep:
+    cmds:
+      - echo Preparing the environment...
+      - go install github.com/helm/chart-testing/ct@latest
+      - go install github.com/norwoodj/helm-docs/cmd/helm-docs@latest
+
+  lint:
+    desc: Lint all Helm charts
+    cmds:
+      - for: { var: CHARTS, as: CHART }
+        cmd: helm lint {{.CHART}}
+    preconditions:
+      - which helm
+
+  lint:ct:
+    desc: Run chart-testing (ct) lint against all Helm charts
+    cmds:
+      - ct lint --all --chart-dirs charts --validate-maintainers=false
+    preconditions:
+      - which ct
+
+  dependency:
+    desc: Install dependencies
+    cmds:
+      - for: { var: CHARTS, as: CHART }
+        cmd: helm dependency update {{.CHART}}
+    preconditions:
+      - which helm
+
+  docs:
+    desc: Generate documentation for all charts
+    cmds:
+      - for: { var: CHARTS, as: CHART }
+        cmd: helm-docs --chart-search-root {{.CHART}} --output-file=HELM.md --template-files=HELM.md.gotmpl --skip-version-footer --sort-values-order=file
+    preconditions:
+      - which helm-docs
+
+  helmdocstemplate:
+    desc: Add template helm docs to all charts
+    cmds:
+      - for: { var: CHARTS, as: CHART }
+        cmd: cp scripts/templates/HELM.md.gotmpl {{.CHART}}/HELM.md.gotmpl
+
+  template:all:
+    desc: Render all Helm charts, fail if any chart fails to template
+    cmds:
+      - for: { var: CHARTS, as: CHART }
+        cmd: |
+          echo "Rendering {{.CHART}}..."
+          helm dependency build "{{.CHART}}"
+          helm template "{{.CHART}}" --include-crds --skip-tests --output-dir=rendered
+    preconditions:
+      - which helm

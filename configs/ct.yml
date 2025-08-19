@@ -1,0 +1,14 @@
+remote: origin
+target-branch: main
+all: true
+chart-dirs:
+  - charts
+excluded-charts:
+chart-repots:
+  - openfga=https://openfga.github.io/helm-charts
+helm-extra-args: "--timeout 900s"
+validate-chart-schema: false
+validate-maintainers: false
+validate-yaml: true
+exclude-deprecated: true
+check-version-increment: false
