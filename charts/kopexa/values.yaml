@@ -1,0 +1,83 @@
+# -- Overrides the default release name
+nameOverride: ""
+
+# -- Overrides the full name of the release, affecting resource names
+fullnameOverride: ""
+
+kopexa:
+  domain: kopexa.com
+  # -- Custom annotations for Kopexa pods
+  podAnnotations: {}
+
+  common:
+    labels:
+    matchLabels:
+    metaLabels:
+
+  backend:
+    # -- Hostname for the Kopexa Backend Service
+    host: api.{{ .Values.kopexa.domain }}
+    publicBaseURL: https://api.{{ .Values.kopexa.domain }}
+
+  realtime:
+    # -- Hostname for the Kopexa Realtime Service
+    host: api.{{ .Values.kopexa.domain }}
+    # -- Public base URL for the Kopexa Realtime Service
+    publicBaseURL: wss://api.{{ .Values.kopexa.domain }}
+
+  frontend:
+    # -- Hostname for the Kopexa Frontend Service
+    host: app.{{ .Values.kopexa.domain }}
+    # -- Public base URL for the Kopexa Frontend
+    publicBaseURL: https://app.{{ .Values.kopexa.domain }}
+    replicaCount: 3
+    fullnameOverride: ""
+    name: "frontend"
+
+    image:
+      # -- Image repository for the Kopexa Frontend Service
+      repository: kopexa/frontend
+      # -- Specific version tag of the Kopexa Frontend image. View the latest version here
+      tag: ""
+      # -- Pulls image only if not present on the node
+      pullPolicy: ""
+      # -- Secret references for pulling the image, if needed
+      imagePullSecrets: []
+
+    labels:
+    matchLabels:
+    # -- Topology spread constraints for multi-zone deployments
+    # -- Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+    topologySpreadConstraints: []
+    # -- Node affinity settings for pod placement
+    affinity: {}
+    # -- Tolerations definitions
+    tolerations: []
+    # -- Node selector for pod placement
+    nodeSelector: {}
+    # -- Pod security context settings
+    podSecurityContext:
+      fsGroup: 1001
+      runAsUser: 1001
+      runAsGroup: 1001
+
+    # -- Resource requests and limits for the Kopexa Frontend pods
+    resources:
+      limits:
+        # -- Memory limit for the Kopexa Frontend pods
+        memory: 2048Mi
+        # -- CPU limit for the Kopexa Frontend pods
+        cpu: 2000m
+      requests:
+        # -- CPU request for the Kopexa Frontend pods
+        cpu: 500m
+        # -- Memory request for the Kopexa Frontend pods
+        memory: 512Mi
+
+    service:
+      # -- Service type, can be changed based on exposure needs (e.g., LoadBalancer)
+      type: ""
+      # -- Custom annotations for Kopexa service
+      annotations: {}
+      # -- Optional node port for service when using NodePort type
+      nodePort: ""
