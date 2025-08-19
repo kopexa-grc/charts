@@ -1,0 +1,14 @@
+version: 0.1.0
+apiVersion: v2
+appVersion: "1.0.0"
+name: kopexa
+description: A Helm chart to deploy Kopexa Server on Kopexa Infrastructure
+type: application
+maintainers:
+  - name: Kopexa Team
+    email: hello@kopexa.com
+    url: https://kopexa.com
+icon: https://kopexa.com/favicon.ico
+sources:
+  - https://github.com/kopexa-grc/charts
+home: https://kopexa.com

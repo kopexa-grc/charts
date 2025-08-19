@@ -254,5 +254,5 @@ task lint
 OR if you'd like to run the ct lint process by using a docker image, you can use a command like the following:
 
 ```bash
-docker run --rm -it -w /charts -v $(pwd)/../../:/charts quay.io/helmpack/chart-testing:v3.12.0 ct lint --charts /charts/charts/openfga --config /charts/charts/openfga/ct.yaml
+docker run --rm -it -w /charts -v $(pwd)/../../:/charts quay.io/helmpack/chart-testing:v3.12.0 ct lint --charts /charts/charts/openfga --config /charts/charts/openfga/ct.yml
 ```
