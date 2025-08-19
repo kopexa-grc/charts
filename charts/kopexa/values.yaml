@@ -36,7 +36,7 @@ kopexa:
 
     image:
       # -- Image repository for the Kopexa Frontend Service
-      repository: kopexa/frontend
+      repository: ""
       # -- Specific version tag of the Kopexa Frontend image. View the latest version here
       tag: ""
       # -- Pulls image only if not present on the node

@@ -24,7 +24,7 @@ spec:
   selector:
     matchLabels:
      {{- include "kopexa.frontend.matchLabels" . | nindent 6 }}
- 
+
   minReadySeconds: 60
   strategy:
     type: RollingUpdate
@@ -71,7 +71,7 @@ spec:
         {{- end }}
       containers:
         - name: {{ template "kopexa.name" . }}-frontend
-          image: "{{ $kopexaValues.frontend.image.repository }}:{{ $kopexaValues.frontend.image.tag | default "latest" }}"
+          image: "{{ $kopexaValues.frontend.image.repository | default "ghcr.io/kopexa-grc/kopexa-frontend" }}:{{ $kopexaValues.frontend.image.tag | default "latest" }}"
           imagePullPolicy: {{ $kopexaValues.frontend.image.pullPolicy | default "IfNotPresent" }}
           readinessProbe:
             httpGet:
