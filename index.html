@@ -1,73 +1,122 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Helm Charts</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kopexa Helm Charts</title>
+    <link rel="icon" href="/assets/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" />
     <style>
-      .markdown-body {
-        box-sizing: border-box;
-        min-width: 200px;
-        max-width: 980px;
+      :root {
+        --bg: #0b0f1a;
+        --panel: #121829;
+        --fg: #e7ecf3;
+        --muted: #99a3b3;
+        --brand: #5b8cff;
+        --brand-2: #7aa2ff;
+        --border: #1e263d;
+      }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        background: radial-gradient(1200px 600px at 70% -10%, rgba(91,140,255,0.15), transparent),
+                    radial-gradient(900px 500px at -10% 20%, rgba(122,162,255,0.12), transparent),
+                    var(--bg);
+        color: var(--fg);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      .container {
+        max-width: 1000px;
         margin: 0 auto;
-        padding: 45px;
+        padding: 32px 20px 60px;
       }
-      @media (max-width: 767px) {
-        .markdown-body {
-          padding: 15px;
-        }
+      header.hero {
+        display: grid;
+        gap: 10px;
+        margin: 20px 0 28px;
       }
+      header.hero h1 {
+        margin: 0;
+        font-size: 28px;
+        letter-spacing: 0.3px;
+      }
+      header.hero p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; }
+      .usage { padding: 16px 18px; margin-bottom: 18px; }
+      .usage h2 { font-size: 16px; margin: 0 0 10px; color: var(--brand-2); }
+      pre { margin: 0; background: #0e1424; border: 1px solid var(--border); padding: 12px; border-radius: 10px; overflow: auto; }
+      code { color: #cfe1ff; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+      .card { padding: 16px; }
+      .card h3 { margin: 0 0 6px; font-size: 16px; }
+      .meta { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+      .desc { color: var(--fg); opacity: 0.9; font-size: 14px; margin: 8px 0 12px; }
+      .links a { color: var(--brand); text-decoration: none; margin-right: 12px; }
+      .links a:hover { text-decoration: underline; }
+      footer { margin-top: 26px; color: var(--muted); font-size: 12px; text-align: center; }
     </style>
   </head>
-
   <body>
+    <div class="container">
+      <header class="hero">
+        <h1>Kopexa Helm Charts</h1>
+        <p>Official Helm charts for Kopexa components and integrations.</p>
+      </header>
 
-    <section class="markdown-body">
-      <h1>Helm Charts</h1>
+      <section class="panel usage">
+        <h2>Use via classic Helm repository</h2>
+        <pre><code># Add Kopexa charts repo (GitHub Pages)
+helm repo add kopexa https://kopexa-grc.github.io/charts
+helm repo update
+# Search and install
+helm search repo kopexa
+helm install my-kopexa kopexa/kopexa --version 0.1.1 -f values.yaml</code></pre>
+      </section>
 
-      <h2>Usage</h2>
-      <pre lang="no-highlight"><code>
-        helm repo add halkeye https://halkeye.github.io/helm-charts
-      </code></pre>
+      <section class="panel usage">
+        <h2>Use via OCI (GHCR)</h2>
+        <pre><code># Login to GHCR and install a chart directly from OCI
+helm registry login ghcr.io
+# Example for the 'kopexa' chart
+helm install my-kopexa oci://ghcr.io/kopexa-grc/charts/kopexa --version 0.1.1 -f values.yaml
+# Or pull the package locally
+helm pull oci://ghcr.io/kopexa-grc/charts/kopexa --version 0.1.1</code></pre>
+      </section>
 
-      <p>These are presented as is. Anyone is free to use them, and make suggestions, but they were created for my own use. At some point I want to submit them to the actual helm charts repo.</p>
+      <section class="grid">
+        <article class="panel card">
+          <h3>kopexa</h3>
+          <div class="meta">version 0.1.1 · app 1.0.0</div>
+          <div class="desc">A Helm chart to deploy Kopexa Server on Kopexa Infrastructure</div>
+          <div class="links"><a href="https://kopexa.com" target="_blank" rel="noopener">Home</a><a href="kopexa-0.1.1.tgz" target="_blank" rel="noopener">Chart (tgz)</a>
+          </div>
+          <div class="meta" style="margin-top:8px;">Maintainers:<a href="https://kopexa.com" target="_blank" rel="noopener">Kopexa Team</a>
+          </div>
+          <div class="meta" style="margin-top:8px;">Install:
+            <code>helm install my-kopexa kopexa/kopexa --version 0.1.1</code>
+          </div>
+        </article>
+        <article class="panel card">
+          <h3>openfga</h3>
+          <div class="meta">version 0.1.1 · app 1.16.0</div>
+          <div class="desc">A Helm chart to deploy OpenFGA Server within Kopexa Infrastructure</div>
+          <div class="links"><a href="https://kopexa.com" target="_blank" rel="noopener">Home</a><a href="openfga-0.1.1.tgz" target="_blank" rel="noopener">Chart (tgz)</a>
+          </div>
+          <div class="meta" style="margin-top:8px;">Maintainers:<a href="https://kopexa.com" target="_blank" rel="noopener">Kopexa Team</a>
+          </div>
+          <div class="meta" style="margin-top:8px;">Install:
+            <code>helm install my-openfga kopexa/openfga --version 0.1.1</code>
+          </div>
+        </article>
+      </section>
 
-      <h2>Charts</h2>
-
-      <ul>
-			
-				<li>
-					<p>
-						kopexa
-						(<a href="kopexa-0.1.1.tgz" title="kopexa-0.1.1.tgz">
-						0.1.1
-						@
-						1.0.0
-						</a>)
-					</p>
-					<p>
-						A Helm chart to deploy Kopexa Server on Kopexa Infrastructure
-					</p>
-				</li>
-			
-				<li>
-					<p>
-						openfga
-						(<a href="openfga-0.1.1.tgz" title="openfga-0.1.1.tgz">
-						0.1.1
-						@
-						1.16.0
-						</a>)
-					</p>
-					<p>
-						A Helm chart to deploy OpenFGA Server within Kopexa Infrastructure
-					</p>
-				</li>
-			
-      </ul>
-    </section>
-		<time datetime="2025-08-19T10:57:54" pubdate id="generated">Tue Aug 19 2025 10:57:54AM UTC&#43;00:00</time>
+      <footer>
+        <time datetime="2025-08-19T10:57:54" pubdate id="generated">Updated Tue Aug 19 2025 10:57:54AM UTC&#43;00:00</time>
+        · © Kopexa
+      </footer>
+    </div>
   </body>
 </html>
