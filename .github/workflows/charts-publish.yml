@@ -61,10 +61,10 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      # Lint the charts
-      - name: Fetch current Chart Index from gh-pages
-        run: |
-          git checkout origin/gh-pages index.yaml
+      # # Lint the charts
+      # - name: Fetch current Chart Index from gh-pages
+      #   run: |
+      #     git checkout origin/gh-pages index.yaml
 
       # Run Chart Releaser
       - name: Run Chart Releaser
