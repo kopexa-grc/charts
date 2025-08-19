@@ -3,6 +3,24 @@ entries:
   kopexa:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-08-19T14:55:08.221010025Z"
+    description: A Helm chart to deploy Kopexa Server on Kopexa Infrastructure
+    digest: 38956d642bdc0f18cfd5349c6a313400af8d7da307fefabe221b5b62e1696946
+    home: https://kopexa.com
+    icon: https://kopexa.com/favicon.ico
+    maintainers:
+    - email: hello@kopexa.com
+      name: Kopexa Team
+      url: https://kopexa.com
+    name: kopexa
+    sources:
+    - https://github.com/kopexa-grc/charts
+    type: application
+    urls:
+    - kopexa-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-08-19T10:44:08.7265089Z"
     description: A Helm chart to deploy Kopexa Server on Kopexa Infrastructure
     digest: a0b5460b8ea57d032317ca610e372215c0438f94d86e98feb5e628e88e382c81
@@ -43,4 +61,4 @@ entries:
     urls:
     - openfga-0.1.1.tgz
     version: 0.1.1
-generated: "2025-08-19T10:57:54.923127749Z"
+generated: "2025-08-19T14:55:08.221017109Z"
