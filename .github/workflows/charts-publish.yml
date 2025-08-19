@@ -34,6 +34,12 @@ jobs:
       - name: Set up Helm
         uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
 
+      # Add external Helm repositories required by chart dependencies
+      - name: Add external Helm repositories
+        run: |
+          helm repo add openfga https://openfga.github.io/helm-charts --force-update
+          helm repo update
+
       # Install yq
       - name: Install yq
         run: |
