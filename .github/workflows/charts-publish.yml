@@ -75,6 +75,38 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+          fetch-depth: 1
+
+      - name: Ensure index.yaml exists (first publish guard)
+        working-directory: gh-pages
+        run: |
+          if [[ ! -f index.yaml ]]; then
+            echo "No index.yaml on gh-pages yet. Creating empty index to proceed."
+            helm repo index ./
+          fi
+
+      - name: Install helm-repo-html plugin
+        run: |
+          helm plugin install https://github.com/halkeye/helm-repo-html
+
+      - name: Generate index.html from index.yaml
+        working-directory: gh-pages
+        run: |
+          # erzeugt index.html basierend auf index.yaml
+          helm repo-html
+          if git diff --quiet -- index.html; then
+            echo "No changes to index.html"
+          else
+            git add index.html
+            git commit -m "chore(helm): update index.html from index.yaml"
+            git push origin gh-pages
+          fi
+
       # Push OCI Helm Chart Packages to GHCR
       - name: Login to GitHub Container Registry (GHCR)
         uses: docker/login-action@v3
