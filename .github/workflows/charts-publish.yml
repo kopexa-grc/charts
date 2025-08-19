@@ -64,7 +64,7 @@ jobs:
       - name: Run Chart Releaser
         uses: helm/chart-releaser-action@v1.7.0
         with:
-          config: "configs/cr.yaml"
+          config: "configs/cr.yml"
           packages_with_index: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

@@ -1,0 +1,6 @@
+## Reference: https://github.com/helm/chart-releaser
+index-path: "./index.yaml"
+generate-release-notes: true
+packages-with-index: true
+owner: kopexa-grc
+git-repo: charts
