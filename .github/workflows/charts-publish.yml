@@ -99,10 +99,12 @@ jobs:
         run: |
           # erzeugt index.html basierend auf index.yaml
           helm repo-html
-          if git diff --quiet -- index.html; then
+
+          git add index.html
+
+          if git diff --cached --quiet; then
             echo "No changes to index.html"
           else
-            git add index.html
             git commit -m "chore(helm): update index.html from index.yaml"
             git push origin gh-pages
           fi
