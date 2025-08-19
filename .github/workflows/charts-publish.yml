@@ -94,6 +94,11 @@ jobs:
         run: |
           helm plugin install https://github.com/halkeye/helm-repo-html
 
+      - name: Configure Git
+        run: | # $GITHUB_ACTOR: last user who trigger the action
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Generate index.html from index.yaml
         working-directory: gh-pages
         run: |
