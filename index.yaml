@@ -102,4 +102,20 @@ entries:
     urls:
     - openfga-0.1.1.tgz
     version: 0.1.1
-generated: "2025-08-22T06:14:02.30426049Z"
+  redis:
+  - apiVersion: v2
+    appVersion: 6.2.6
+    created: "2025-08-22T07:34:18.257781272Z"
+    dependencies:
+    - name: kopexa-lib
+      repository: file://../../library/kopexa-lib
+      version: 0.1.0
+    description: Managed Redis Service
+    digest: cbcdca004b6caf41de8ee97fdd606ab3fc03b82fdf3287f8278b52b17bfc58a2
+    icon: https://raw.githubusercontent.com/kopexa-grc/charts/main/charts/redis/logos/redis.svg
+    name: redis
+    type: application
+    urls:
+    - redis-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-08-22T07:34:18.257795449Z"
