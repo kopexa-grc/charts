@@ -1,0 +1,6 @@
+dependencies:
+- name: kopexa-lib
+  repository: file://../../library/kopexa-lib
+  version: 0.1.0
+digest: sha256:70f7c3962fc0d8224f8582b5c8b181e807ea4301633f40148a047502ef0e80bc
+generated: "2025-08-22T09:28:16.467145+02:00"
