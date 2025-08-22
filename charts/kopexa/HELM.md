@@ -45,7 +45,7 @@ A Helm chart to deploy Kopexa Server on Kopexa Infrastructure
 | kopexa.frontend.replicaCount | int | `3` |  |
 | kopexa.frontend.fullnameOverride | string | `""` |  |
 | kopexa.frontend.name | string | `"frontend"` |  |
-| kopexa.frontend.image.repository | string | `"kopexa/frontend"` | Image repository for the Kopexa Frontend Service |
+| kopexa.frontend.image.repository | string | `"ghcr.io/kopexa-grc/kopexa-frontend"` | Image repository for the Kopexa Frontend Service |
 | kopexa.frontend.image.tag | string | `""` | Specific version tag of the Kopexa Frontend image. View the latest version here |
 | kopexa.frontend.image.pullPolicy | string | `""` | Pulls image only if not present on the node |
 | kopexa.frontend.image.imagePullSecrets | list | `[]` | Secret references for pulling the image, if needed |
