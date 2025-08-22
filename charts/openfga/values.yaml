@@ -7,14 +7,13 @@ openfga:
     tag: ""
 
   imagePullSecrets: []
-  nameOverride: ""
-  fullnameOverride: ""
+  nameOverride: "openfga"
+  fullnameOverride: "openfga"
   serviceAccount:
     create: true
-    annotations:
-      argocd.argoproj.io/hook: PreSync
-      argocd.argoproj.io/sync-wave: "-2"
-    name: ""
+    # annotations:
+    #   argocd.argoproj.io/hook: PreSync
+    #   argocd.argoproj.io/sync-wave: "-2"
 
   annotations: {}
 
@@ -124,15 +123,16 @@ openfga:
       enabled: true
       serviceMonitor:
         enabled: true
-        namespace: "openfga"
 
   datastore:
     engine: postgres
-    existingSecret: cloudsql-credentials
+    existingSecret: kopexa-cluster-app
+    uri: postgres://pooler-kopexa-rw:5432/kopexa_fga
     secretKeys:
-      uriKey: uri
+      usernameKey: username
+      passwordKey: password
     maxCacheSize:
-    maxOpenConns: 30
+    maxOpenConns: 50
     maxIdleConns: 10
     connMaxIdleTime: 1h
     connMaxLifetime: 1h
@@ -173,14 +173,14 @@ openfga:
     corsAllowedOrigins: ["*"]
     corsAllowedHeaders: ["*"]
 
-  authn:
-    method: preshared
-    preshared:
-      keys: []
-      keysSecret: preshared-keys
-    oidc:
-      audience:
-      issuer:
+  # authn:
+  #   method: preshared
+  #   preshared:
+  #     keys: []
+  #     keysSecret: preshared-keys
+  #   oidc:
+  #     audience:
+  #     issuer:
 
   playground:
     enabled: false
@@ -268,8 +268,8 @@ openfga:
       helm.sh/hook: null
       helm.sh/hook-weight: null
       helm.sh/hook-delete-policy: null
-      argocd.argoproj.io/hook: PreSync
-      argocd.argoproj.io/sync-wave: "-1"
+      # argocd.argoproj.io/hook: PreSync
+      # argocd.argoproj.io/sync-wave: "-2"
     timeout:
 
   testPodSpec: {}
